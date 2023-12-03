@@ -1,5 +1,8 @@
+import java.util.TreeSet;
+
 public class Main {
     public static void main(String[] args) {
+        //Prosit 9
         SocieteArrayList societe = new SocieteArrayList();
 
         Employee emp1 = new Employee(1, "Sahnoun", "Amir", "IT", 5);
@@ -37,5 +40,28 @@ public class Main {
         societe.supprimerEmploye(emp2);
         System.out.println("\nListe des employés après suppression:");
         societe.displayEmploye();
+
+        //Prosit 10
+        DepartementHashSet departementHashSet = new DepartementHashSet();
+
+        Departement dep1 = new Departement(1, "IT", 5);
+        Departement dep2 = new Departement(2, "HR", 4);
+        Departement dep3 = new Departement(3, "Sales", 3);
+
+        // Add departments
+        departementHashSet.ajouterDepartement(dep1);
+        departementHashSet.ajouterDepartement(dep2);
+        departementHashSet.ajouterDepartement(dep3);
+
+        // Display departments
+        departementHashSet.displayDepartement();
+
+        // Search for a department
+        boolean found = departementHashSet.rechercherDepartement("IT");
+        System.out.println("Department found: " + found);
+
+        // Sort departments by ID
+        TreeSet<Departement> sortedDepartments = departementHashSet.trierDepartementById();
+        sortedDepartments.forEach(System.out::println);
     }
 }
