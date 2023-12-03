@@ -1,5 +1,5 @@
-import java.util.TreeMap;
-import java.util.TreeSet;
+import java.util.*;
+import java.util.stream.Stream;
 
 public class Main {
     public static void main(String[] args) {
@@ -67,9 +67,9 @@ public class Main {
 
         //Prosit 11
         AffectationHashMap affectationHashMap = new AffectationHashMap();
-        Employee employe1 = new Employee(1, "John", "Doe", "IT", 5);
-        Employee employe2 = new Employee(2, "Jane", "Doe", "HR", 4);
-        Employee employe3 = new Employee(3, "Jim", "Beam", "Sales", 3);
+        Employee employe1 = new Employee(1, "Sahnoun", "Amir", "IT", 5);
+        Employee employe2 = new Employee(2, "Test", "Tester", "HR", 4);
+        Employee employe3 = new Employee(3, "Example", "Exampler", "Sales", 3);
         Departement depart1 = new Departement(1, "IT", 5);
         Departement depart2 = new Departement(2, "HR", 4);
         Departement depart3 = new Departement(3, "Sales", 3);
@@ -91,5 +91,41 @@ public class Main {
         // Sort employees by ID
         TreeMap<Employee, Departement> sortedMap = affectationHashMap.trierMap();
         sortedMap.forEach((employee, departement) -> System.out.println(employee + " -> " + departement));
+
+        //Prosit 12
+        StudentManagement studentManagement = new StudentManagement();
+
+        Student student1 = new Student(1, "Amir", 20);
+        Student student2 = new Student(2, "Test", 22);
+        Student student3 = new Student(3, "Foulany", 21);
+
+        // Add students
+        List<Student> students = new ArrayList<>();
+        students.add(student1);
+        students.add(student2);
+        students.add(student3);
+
+        // Display students
+        studentManagement.displayStudents(students, System.out::println);
+
+        // Display students by filter
+        studentManagement.displayStudentsByFilter(students, student -> student.getAge() > 20, System.out::println);
+
+        // Return students names
+        String names = studentManagement.returnStudentsNames(students, Student::getName);
+        System.out.println(names);
+
+        // Create student
+        Student student4 = studentManagement.createStudent(() -> new Student(4, "Foulan", 23));
+        System.out.println(student4);
+
+        // Sort students by ID
+        List<Student> sortedStudents = studentManagement.sortStudentsById(students, Comparator.comparingInt(Student::getId));
+        sortedStudents.forEach(System.out::println);
+
+        // Convert to stream
+        Stream<Student> studentStream = studentManagement.convertToStream(students);
+        studentStream.forEach(System.out::println);
+    }
     }
 }
